@@ -1,6 +1,6 @@
-package intetrnal
+package accounts
 
-// User model for users
+// User model for accounts
 type User struct {
 	Login string `json:"login"`
     Password string `json:"password"`
