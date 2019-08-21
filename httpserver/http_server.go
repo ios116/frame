@@ -6,12 +6,13 @@ import (
 	"net/http"
 )
 
+// HttpServer struct for init http server
 type HttpServer struct {
 	Port int
 	Host string
-	Router   http.Handler
 }
 
+// Start start http server
 func (s *HttpServer) Start() {
 	r := createRouters()
 	server := &http.Server{

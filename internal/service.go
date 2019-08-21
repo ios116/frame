@@ -7,7 +7,7 @@ type User struct {
 }
 
 // GetUsers some logic
-func GetUsers() *User {
+func GetSomeUsers() *User {
 	return &User{
 		Login: "admin",
 		Password: "134567",
