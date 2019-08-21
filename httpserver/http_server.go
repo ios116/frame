@@ -2,26 +2,21 @@ package httpserver
 
 import (
 	"fmt"
-	"githab.com/gorrila/mux"
+	"log"
 	"net/http"
 )
 
 type HttpServer struct {
-	httpPort int
-	router   http.Handler
+	Port int
+	Host string
+	Router   http.Handler
 }
 
-func (s *HttpServer) Start() error {
-	return http.ListenAndServer(fmt.Sprintf("0.0.0.0:%d", s.httpPort), s.router)
-}
-
-func NewHTTPServer(port int) *HttpServer {
-
-	r := mux.NewRouter()
-	hs = HttpServer{router: r, httpPort: port}
-
-	http.Handle("/", r)
-
-	return &hs
-
+func (s *HttpServer) Start() {
+	r := createRouters()
+	server := &http.Server{
+		Addr:    fmt.Sprintf("%s:%d", s.Host, s.Port),
+		Handler: r,
+	}
+	log.Fatal(server.ListenAndServe())
 }
