@@ -23,9 +23,11 @@ func (c *Config) CreateConfig() {
 
 // CreateLogger creating the logger
 func (c *Config) CreateLogger() (logger *zap.Logger, err error) {
-	if c.Build == "dev" {
+
+	switch c.Build {
+	case "dev":
 		logger, err = zap.NewDevelopment()
-	} else {
+	default:
 		logger, err = zap.NewProduction()
 	}
 	return logger, err

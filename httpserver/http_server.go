@@ -20,6 +20,6 @@ func (s *HTTPServer) Start() {
 		Addr:    fmt.Sprintf("%s:%d", s.Host, s.Port),
 		Handler: r,
 	}
-	s.Logger.Info("Server is starting",zap.String("host",s.Host),zap.Int("port",s.Port))
+	s.Logger.Info("Server is starting", zap.String("host", s.Host), zap.Int("port", s.Port))
 	s.Logger.Fatal(server.ListenAndServe().Error())
 }
