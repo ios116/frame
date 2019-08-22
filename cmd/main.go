@@ -22,14 +22,10 @@ func main() {
 	logger, _ := cfg.CreateLogger()
 	defer logger.Sync()
 
-	logger.Debug("This is a DEBUG message")
-	logger.Info("This is an INFO message")
-	logger.Error("This is an ERROR message")
-	logger.Warn("This is a WARN messages")
-
-	server := httpserver.HttpServer{
+	server := httpserver.HTTPServer{
 		Port:   cfg.Port,
 		Host:   cfg.Host,
+		Logger: logger,
 	}
 	server.Start()
 	//logger.DPanic("This is PANIC")

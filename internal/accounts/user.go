@@ -2,14 +2,14 @@ package accounts
 
 // User model for accounts
 type User struct {
-	Login string `json:"login"`
-    Password string `json:"password"`
+	Login    string `json:"login"`
+	Password string `json:"password"`
 }
 
-// GetUsers some logic
+// GetSomeUsers some logic
 func GetSomeUsers() *User {
 	return &User{
-		Login: "admin",
+		Login:    "admin",
 		Password: "134567",
 	}
 }

@@ -2,22 +2,24 @@ package httpserver
 
 import (
 	"fmt"
-	"log"
+	"go.uber.org/zap"
 	"net/http"
 )
 
-// HttpServer struct for init http server
-type HttpServer struct {
-	Port int
-	Host string
+// HTTPServer struct for init http server
+type HTTPServer struct {
+	Port   int
+	Host   string
+	Logger *zap.Logger
 }
 
 // Start start http server
-func (s *HttpServer) Start() {
-	r := createRouters()
+func (s *HTTPServer) Start() {
+	r := s.createRouters()
 	server := &http.Server{
 		Addr:    fmt.Sprintf("%s:%d", s.Host, s.Port),
 		Handler: r,
 	}
-	log.Fatal(server.ListenAndServe())
+	s.Logger.Info("Server is starting",zap.String("host",s.Host),zap.Int("port",s.Port))
+	s.Logger.Fatal(server.ListenAndServe().Error())
 }
